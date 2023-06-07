@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-image: url("https://i.postimg.cc/hGFgv4LC/a3fb101298a64b4ced2da9c763b799b7.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.navbar {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  font-family: "Ubuntu", sans-serif;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.navbar.sticky {
+  background-color: crimson;
+}
+
+.navbar .navbar-brand {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.navbar .navbar-brand span {
+  color: crimson;
+  transition: all 0.3s ease;
+}
+
+.navbar.sticky .navbar-brand span {
+  color: #fff;
+}
+
+.navbar .collapse ul li a {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
+
+.navbar .collapse ul li a:hover {
+  color: crimson;
+}
+
+.navbar.sticky .collapse ul li a:hover {
+  color: #fff;
+}
+
+.home {
+  color: #ffff;
+  font-size: 4rem;
+  text-align: center;
+  justify-content: center;
+  margin-top: 9rem;
+  font-family: "Ubuntu", sans-serif;
+  height: 100vh;
+}
+
+.home .stock {
+  font-size: 1.5rem;
+}
+
+footer {
+  background-color: crimson;
+}
+
+footer {
+  background: #111;
+  color: #fff;
+  padding: 4rem;
+}
+
+footer th {
+  font-size: 1rem;
+}
+
+footer td {
+  font-size: 0.6rem;
+}
+
+footer td a {
+  color: #fff;
+}
+
+table,
+th,
+td {
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding-left: 8rem;
+}
+
+footer p {
+  font-size: 0.6rem;
+  text-align: center;
+  padding-top: 30px;
+}
+
+.list-group {
+  padding-bottom: 2rem;
+}
