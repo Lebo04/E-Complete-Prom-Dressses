@@ -12,6 +12,26 @@ body {
   background-size: cover;
 }
 
+
+
+.color{
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  box-shadow: 0 0 5px 0 gray;
+}
+
+.size {
+  height: 2rem;
+  width: 2rem;
+  border: .1rem solid black;
+
+}
+
+.singleItem {
+  display: flex;
+}
+
 .navbar {
   position: fixed;
   top: 0px;
@@ -85,7 +105,7 @@ body {
   font-size: 4rem;
   text-align: center;
   justify-content: center;
-  margin-top: 9rem;
+  margin-top: 4rem;
   font-family: "Ubuntu", sans-serif;
 }
 
@@ -99,7 +119,106 @@ h1 {
 }
 
 .dress {
-    margin-top: 5rem;
+    margin-top: 7rem;
+}
+
+label {
+  color: #ffff
+}
+
+.cart {
+  background: transparent;
+  margin-top: 5rem;
+}
+
+.checkout {
+  margin-top: 5rem;
+}
+
+.checkout .row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 0 -16px;
+}
+
+.checkout .col-25 {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+}
+
+.checkout .col-50 {
+  -ms-flex: 50%; /* IE10 */
+  flex: 50%;
+}
+
+.checkout .col-75 {
+  -ms-flex: 75%; /* IE10 */
+  flex: 75%;
+}
+
+.checkout.col-25,
+.checkout.col-50,
+.checkout.col-75 {
+  padding: 0 16px;
+}
+
+.checkout .container {
+  background-color: #f2f2f2;
+  padding: 5px 20px 15px 20px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+}
+
+.checkout input[type=text] {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.checkout label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.checkout .icon-container {
+  margin-bottom: 20px;
+  padding: 7px 0;
+  font-size: 24px;
+}
+
+.checkout .btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  width: 100%;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.checkout .btn:hover {
+  background-color: #45a049;
+}
+
+.checkout span.price {
+  float: right;
+  color: grey;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (and change the direction - make the "cart" column go on top) */
+@media (max-width: 800px) {
+  .row {
+    flex-direction: column-reverse;
+  }
+  .col-25 {
+    margin-bottom: 20px;
+  }
 }
 
 footer {
@@ -110,6 +229,7 @@ footer {
   background: #111;
   color: #fff;
   padding: 4rem;
+  margin-top: 2rem;
 }
 
 footer th {
@@ -143,4 +263,52 @@ footer p {
 
 .list-group {
   padding-bottom: 2rem;
+}
+
+
+
+@media screen and (max-width: 768px) {
+  .home {
+    font-size: 2.5rem;
+  }
+  
+  .home .stock {
+    font-size: 1rem;
+  }
+
+  .slide {
+    height: 30vh;
+  } 
+
+  .dresses img{
+    height: 40vh;
+  }
+
+  .dress h5 {
+    font-size: 1rem;
+  }
+
+  .dress button {
+    font-size: .9rem;
+  }
+
+  .color{
+    height: 15px;
+    width: 15px;
+  }
+  
+  .size {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 426px) {
+  .home {
+    font-size: 1.7rem;
+  }
+  
+  .home .stock {
+    font-size: .8rem;
+  }
 }

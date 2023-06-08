@@ -1,87 +1,85 @@
-$(document).ready(function() {
-    $(window).scroll(function() {
-        if (this.scrollY > 20) {
-           $('.navbar').addClass("sticky")
-        } else {
-            $('.navbar').removeClass("sticky")
-        }
-    })
+$(document).ready(function () {
+  $(window).scroll(function () {
+    if (this.scrollY > 20) {
+      $(".navbar").addClass("sticky");
+    } else {
+      $(".navbar").removeClass("sticky");
+    }
+  });
 });
 
 let dresses = [
   {
     id: 1,
     name: "Up Mermaid",
-    description: "Available in Black, White, Beige and Red.",
+    description: "Formal Evening Matric Ball Dress.",
     color: ["Blue", "Red", "Purple"],
     size: ["XS", "S", "M", "L", "XL"],
-    price: 300,
+    price: 1500,
     image: "https://i.postimg.cc/KYF6rD7S/170416220818-12688577-3.jpg",
   },
   {
     id: 2,
-    name: "Pencil Heel",
-    description: "Available in Black, Navy, Beige and Red.",
-    color: "Black",
-    size: 5,
-    price: 500,
-    image:
-      "https://i.postimg.cc/vDRZvVsn/Pencil-Heels-Shoes-For-Girls-2015-1024x1024.webp",
+    name: "Evening Dress",
+    description: "Evening Matric Ball Dress.",
+    color: ["Black", "Red", "Blue"],
+    size: ["XS", "S", "M"],
+    price: 1300,
+    image: "https://i.postimg.cc/ryYDMdf5/61404h-mint-pc.jpg",
   },
   {
     id: 3,
-    name: "Block Heel",
-    description: "Available in Black, Navy, Beige, Gold and Red.",
-    color: "Gold",
-    size: 5,
-    price: 350,
-    image: "https://i.postimg.cc/FRLRkptv/1.jpg",
+    name: "V Neck Tulle",
+    description: "A-line V Neck Tulle Matric Ball Dress Applique.",
+    color: ["Pink", "Blue", "White"],
+    size: ["S", "M", "L"],
+    price: 1900,
+    image: "https://i.postimg.cc/pTRsWcXc/matric-dress-za-01506.jpg",
   },
   {
     id: 4,
-    name: "Platform Heel",
-    description: "Available in Black, Navy, Gold, Red and White.",
-    color: "Black",
-    size: 3,
-    price: 400,
-    image:
-      "https://i.postimg.cc/4N6T7Mmw/image-dd6ad32a-f4da-43ee-a3ff-534ae95625c3-700x700.webp",
+    name: "Ball Gown",
+    description: "Ball Gown Evening Dress.",
+    color: ["Cream", "Black", "Blue"],
+    size: ["S", "M", "L"],
+    price: 2000,
+    image: "https://i.postimg.cc/wjszLMc8/89026-137.jpg",
   },
   {
     id: 5,
-    name: "Pump Heel",
-    description: "Available in Black, Navy, Gold, Red and White.",
-    color: "Gold",
-    size: 2,
-    price: 250,
-    image: "https://i.postimg.cc/qMQLJ7dT/9304592-fpx.jpg",
+    name: "Off Shoulder",
+    description: "Off Shoulder Lace Up Back Party matric Ball Dress.",
+    color: ["Dark Blue", "Red", "Purple"],
+    size: ["XS", "S", "M"],
+    price: 2500,
+    image: "https://i.postimg.cc/PfgnhTnS/915452-130312191927-2963.jpg",
   },
   {
     id: 6,
-    name: "Ankle Strap Heel",
-    description: "Available in Black, Navy, Gold, Red and White.",
-    color: "Gold",
-    size: 2,
-    price: 450,
-    image: "https://i.postimg.cc/N0y2FFY9/images.jpg",
+    name: "Sweetheart Tulle",
+    description: "Burugndy Sweetheart Tulle Matric Ball Dress.",
+    color: ["Maroon", "Navy", "Black"],
+    size: ["XS", "S", "M"],
+    price: 2500,
+    image: "https://i.postimg.cc/ZKs307js/matric-dress-za-00670.jpg",
   },
   {
     id: 7,
-    name: "Wedge Heel",
-    description: "Available in Black, Navy, Gold, Brown and White.",
-    color: "Brown",
-    size: 4,
-    price: 300,
-    image: "https://i.postimg.cc/2yjzq9vc/s-pdpxl.jpg",
+    name: "Ball Gown",
+    description: "Ball Gown Off Shoulder Sweep Train Satin Matric Dress.",
+    color: ["Black", "Red", "Blue"],
+    size: ["S", "M", "L"],
+    price: 3000,
+    image: "https://i.postimg.cc/ZR1b1NLc/matric-dress-383.jpg",
   },
   {
     id: 8,
-    name: "Cut Out Heel",
-    description: "Available in Black, Navy, Gold, Red and White.",
-    color: "Gold",
-    size: 2,
-    price: 550,
-    image: "https://i.postimg.cc/gcB9q0Pk/6-Cut-Out-Heels.jpg",
+    name: "Ball Gown",
+    description: "Ball Gown Off Shoulder Organza Matric Dress Appliques.",
+    color: ["Blue", "Pink", "Cream"],
+    size: ["XS", "S", "M"],
+    price: 2500,
+    image: "https://i.postimg.cc/xdBcL84W/matric-dress-za-01443.jpg",
   },
 ];
 
@@ -93,23 +91,35 @@ async function display() {
   data.innerHTML = "";
   dressList.forEach((dress) => {
     data.innerHTML += `
-      <div class="col-md-3 g-3">
+      <div class="col-md-4 g-3">
       <div class="card data" >
         <img
           src="${dress.image}"
           width=""
-          height="400"
+          height="500"
           class="card-img-top"
         />
         <div class="card-body">
           <h5 class="card-title" style="overflow-y: hidden;">${dress.name}</h5>
-          <p>${dress.color}</p>
-          <p>${dress.size}</p>
+            <div class="color-picker d-flex gap-2 py-2 ps-1">
+              <div class="color ps-2" style="background:${dress.color[0].toLowerCase()}"> </div>
+              <div class="color ps-2" style="background:${dress.color[1].toLowerCase()}"> </div>
+              <div class="color ps-2" style="background:${dress.color[2].toLowerCase()}"> </div>
+            </div>
+          <div class="size-picker d-flex gap-2 py-2 ps-1">
+          <div class="size ps-2">${dress.size[0]} </div>
+          <div class="size ps-2">${dress.size[1]} </div>
+          <div class="size ps-2">${dress.size[2]}</div>
+        </div>
           <p class="price">R${dress.price}</p>
-          <button class="btn btn-primary" id="${dress.id}" onclick="setValue(${dress.id})"
+          <button class="btn" id="${
+            dress.id
+          }" style="background-color:crimson" onclick="setValue(${dress.id});"
             ><a class="nav-link" href="./product.html">View Dress</a></button
           >
-          <button class="btn btn-primary cart" id="${dress.id}" onclick="addCart(${dress.id})"
+          <button class="btn carts" style="background-color:crimson" id="${
+            dress.id
+          }" onclick="addToCart(${dress.id})"
             ><i class="fa-solid fa-cart-shopping"></i></button
           >
         </div>
@@ -121,53 +131,66 @@ async function display() {
 
 display();
 
-async function setValue(id) {
-  itemId = id;
-  console.log(itemId);
+function setValue(id) {
+  sessionStorage.setItem("value", id);
+  displaySingle();
 }
-let itemId = 0;
+let itemId = sessionStorage.getItem("value") - 1;
 async function displaySingle() {
   let data = document.querySelector(".dresser");
-
+  let itemId = sessionStorage.getItem("value") - 1;
   data.innerHTML += `
-      <div class="col-md-6 g-3">
-      <div class="card data" style="width: 18rem">
-        <img
+  <div class="singleItem">
+  <img
           src="${dressList[itemId].image}"
-          width=""
-          height="250"
-          class="card-img-top"
+          width="450"
+          height="550"
         />
-        <div class="card-body">
-          <h5 class="card-title">${dressList[itemId].name}</h5>
-          <p class="card-text">${dressList[itemId].description}</p>
-          <p class="price">R${dressList[itemId].price}</p>
-          <button class="btn btn-primary cart" id="${dressList[itemId].id}" onclick="addCart(${dressList[itemId].id})"
-            ><i class="fa-solid fa-cart-shopping"></i></button
-          >
-        </div>
-        </div>
-        </div>
-              `;
-}
 
+        <div style="margin-left: 2rem; margin-top:2rem">
+        <h5 style="overflow-y:hidden; color:white;">${dressList[itemId].name}</h5>
+           <p style="color:white;">${dressList[itemId].description}</p>
+           <p style="color:white;">R${dressList[itemId].price}</p>
+           <button class="btn btn-primary cart" id="${dressList[itemId].id}" onclick="addCart(${dressList[itemId].id})"
+           ><i class="fa-solid fa-cart-shopping"></i></button
+           >
+        </div>
+  </div>
+  `;
+}
 displaySingle();
 
 async function slide() {
   let data = document.querySelector(".slide");
-  data.innerHTML = "";
   dressList.forEach((dress) => {
     data.innerHTML += `
-      <div class='items' style="background-image: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url(${dress.image}); width: 33.33vw; height:50vh;">
-       
+      <div class='items' style="background-image:url(${dress.image}); background-size: cover; width: 33.33vw; height:90vh; position:relative;">
+      <button class="btn carts" id="${dress.id}" onclick="addCart(${dress.id})"
+      style="display: flex; position:absolute; right:1rem; top:1rem; background-color:crimson;"
+      ><i class="fa-solid fa-cart-shopping"></i></button
+    >
+    <h5 class="card-title" style="position:absolute; bottom:2.5rem; left:1rem; color: white; overflow-y:hidden">${dress.name}</h5>
+    <p class="price" style="position:absolute; bottom:0rem; left:1rem; color: white"
+    >R${dress.price}</p>
+    <button class="btn" id="${dress.id}" style="background-color:crimson; display: flex; position:absolute; right:1rem; bottom:1rem;" onclick="setValue(${dress.id});"
+            ><a class="nav-link" href="./HTML/product.html">View Dress</a></button
+          >
       </div>
-
               `;
   });
   for (let i = 0; i < 3; i++) {
     data.innerHTML += `
-      <div class='items' style="background-image: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url(${dressList[i].image}); width: 33.33vw; height:50vh;">
-      
+      <div class='items' style="background-image:url(${dressList[i].image}); background-size: cover; width: 33.33vw; height:90vh; position:relative">
+      <button class="btn carts" id="${dressList[i].id}" onclick="addCart(${dressList[i].id})"
+      style="display: flex; position:absolute; right:1rem; top:1rem; background-color:crimson;"
+            ><i class="fa-solid fa-cart-shopping"></i></button
+          >
+          <h5 class="card-title" style="position:absolute; bottom:2.5rem; left:1rem; color: white; overflow-y:hidden">${dressList[i].name}</h5>
+          <p class="price" style="position:absolute; bottom:0rem; left:1rem; color: white"
+    >R${dressList[i].price}</p>
+    <button class="btn" id="${dressList[i].id}" style="background-color:crimson; display: flex; position:absolute; right:1rem; bottom:1rem;" onclick="setValue(${dressList[i].id});"
+            ><a class="nav-link" href="./HTML/product.html">View Dress</a></button
+          >
       </div>
 
               `;
@@ -185,37 +208,44 @@ data.addEventListener("mouseout", (e) => {
   data.id = "slidego";
 });
 
-//cart code
+//----------------------CART CODE-----------------------------//
 
 let cart = [];
-localStorage.setItem("cart", JSON.stringify(cart));
-let cartItems = JSON.parse(localStorage.getItem("cart"));
 
-function addCart(i) {
+function addToCart(x) {
+  let i = x - 1;
+  let cart = JSON.parse(localStorage.getItem("cart"))
+    ? JSON.parse(localStorage.getItem("cart"))
+    : [];
+  localStorage.setItem("cart", JSON.stringify(cart));
+
   if (cart.includes(dressList[i])) {
+    console.log("Item already in cart");
     dressList[i].quantity++;
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    localStorage.setItem("cart", JSON.stringify(cart));
   } else {
+    console.log("First time adding item to cart");
     dressList[i].quantity = 1;
-    cartItems.push(dressList[i]);
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    cart.push(dressList[i]);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert('Dress added to cart')
   }
 }
 
-//   // Filtering a Product
+// Filtering a Product
 
-//   let shoe = document.querySelector(".shoe");
-//   let item = document.querySelector(".item");
+let dress = document.querySelector(".search");
+let item = document.querySelector(".dresses");
 
-//   shoe.addEventListener("keyup", () => {
-//     try {
-//       if (!shoe.value.length) throw "Enter a shoe name";
-//       heelsList = heelsList.filter((items) => {
-//         return items.name.toLowerCase().includes(shoe.value.toLowerCase());
-//       });
-//       if (!heelsList.length) throw "This shoe is not yet available";
-//       display();
-//     } catch (data) {
-//       item.innerHTML = data;
-//     }
-//   });
+dress.addEventListener("keyup", () => {
+  try {
+    if (!dress.value.length) throw "Enter a dress name";
+    dressList = dressList.filter((items) => {
+      return items.name.toLowerCase().includes(dress.value.toLowerCase());
+    });
+    if (!dressList.length) throw "This dress is not yet available";
+    display();
+  } catch (data) {
+    item.innerHTML = data;
+  }
+});

@@ -4,8 +4,22 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://kit.fontawesome.com/d011494e22.js" crossorigin="anonymous"></script>
-    <!-- <link rel="stylesheet" href="../style.css"> -->
+    <link
+      rel="stylesheet"
+      href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="../style.css" />
+    <script
+      src="https://kit.fontawesome.com/d011494e22.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.min.js"
+      integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+      crossorigin="anonymous"
+    ></script>
+
     <title>Cart</title>
   </head>
   <body>
@@ -50,28 +64,53 @@
       </div>
     </nav>
 
-    <section class="checkout">
-      <h1 class="title">Checkout</h1>
+    <section class="cart">
+      <div class="container py-5">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-10">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <h3 class="fw-normal mb-0 text-white" style="overflow-y: hidden">
+                Shopping Cart
+              </h3>
+              <div style="color: white">
+                <p class="mb-0" style="color: white">
+                  <span class="text">Sort by:</span>
+                  <a href="#!" class="text-body" style="color: white"
+                    >price <i class="fas fa-angle-down mt-1"></i
+                  ></a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <section class="h-100 table" style="background-color: #eee;">
-    </section>
-
-
-
-
-      <!-- <table class="table table-striped table-hover checkout">
-        <thead>
-          <tr>
-            <th>id</th>
-            <th>Product Name</th>
-            <th>Price</th>
-            <th>Size</th>
-            <th>Color</th>
-            <th>Quantity</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table> -->
+      <div style="display: grid; place-items: center; background: none">
+        <div class="card-body">
+          <button
+            type="button"
+            class="btn btn-block btn-lg"
+            style="background-color: crimson"
+          >
+            <a
+              href="/HTML/checkout.html"
+              style="list-style: none; text-decoration: none; color: white"
+              >Proceed to Pay</a
+            >
+          </button>
+          <button
+            class="btn btn-block btn-lg"
+            style="background-color: crimson"
+          >
+            <a
+              href="/HTML/products.html"
+              style="list-style: none; text-decoration: none; color: white"
+              >Continue to shop</a
+            >
+          </button>
+          
+        </div>
+      </div>
     </section>
 
     <footer>
