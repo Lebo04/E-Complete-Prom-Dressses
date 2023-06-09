@@ -164,8 +164,14 @@ label {
   padding: 0 16px;
 }
 
+.checkout h3, 
+.checkout h4 {
+  color: #ffff;
+  overflow-y: hidden;
+}
+
 .checkout .container {
-  background-color: #f2f2f2;
+  background-color: transparent;
   padding: 5px 20px 15px 20px;
   border: 1px solid lightgrey;
   border-radius: 3px;
@@ -191,7 +197,7 @@ label {
 }
 
 .checkout .btn {
-  background-color: #04AA6D;
+  background-color: crimson;
   color: white;
   padding: 12px;
   margin: 10px 0;
@@ -203,7 +209,7 @@ label {
 }
 
 .checkout .btn:hover {
-  background-color: #45a049;
+  background-color: rgb(68, 67, 67);
 }
 
 .checkout span.price {

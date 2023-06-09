@@ -1,3 +1,5 @@
+let cart = JSON.parse(localStorage.getItem("cart")) ? JSON.parse(localStorage.getItem("cart")) : [];
+
 $(document).ready(function () {
   $(window).scroll(function () {
     if (this.scrollY > 20) {
@@ -119,7 +121,7 @@ async function display() {
           >
           <button class="btn carts" style="background-color:crimson" id="${
             dress.id
-          }" onclick="addToCart(${dress.id})"
+          }" onclick="addToCart(${dressList.indexOf(dress)})"
             ><i class="fa-solid fa-cart-shopping"></i></button
           >
         </div>
@@ -136,6 +138,7 @@ function setValue(id) {
   displaySingle();
 }
 let itemId = sessionStorage.getItem("value") - 1;
+
 async function displaySingle() {
   let data = document.querySelector(".dresser");
   let itemId = sessionStorage.getItem("value") - 1;
@@ -148,10 +151,30 @@ async function displaySingle() {
         />
 
         <div style="margin-left: 2rem; margin-top:2rem">
-        <h5 style="overflow-y:hidden; color:white;">${dressList[itemId].name}</h5>
+        <h5 style="overflow-y:hidden; color:white;">${
+          dressList[itemId].name
+        }</h5>
            <p style="color:white;">${dressList[itemId].description}</p>
-           <p style="color:white;">R${dressList[itemId].price}</p>
-           <button class="btn btn-primary cart" id="${dressList[itemId].id}" onclick="addCart(${dressList[itemId].id})"
+           <div class="color-picker d-flex gap-2 py-2 ps-1">
+           <div class="color ps-2" style="background:${dressList[
+             itemId
+           ].color[0].toLowerCase()}"> </div>
+           <div class="color ps-2" style="background:${dressList[
+             itemId
+           ].color[1].toLowerCase()}"> </div>
+           <div class="color ps-2" style="background:${dressList[
+             itemId
+           ].color[2].toLowerCase()}"> </div>
+         </div>
+       <div class="size-picker d-flex gap-2 py-2 ps-1">
+       <div class="size ps-2">${dressList[itemId].size[0]} </div>
+       <div class="size ps-2">${dressList[itemId].size[1]} </div>
+       <div class="size ps-2">${dressList[itemId].size[2]}</div>
+     </div>
+     <p style="color:white;">R${dressList[itemId].price}</p>
+           <button class="btn btn-primary cart" id="${
+             dressList[itemId].id
+           }" onclick="addCart(${dressList[itemId].id})"
            ><i class="fa-solid fa-cart-shopping"></i></button
            >
         </div>
@@ -165,7 +188,7 @@ async function slide() {
   dressList.forEach((dress) => {
     data.innerHTML += `
       <div class='items' style="background-image:url(${dress.image}); background-size: cover; width: 33.33vw; height:90vh; position:relative;">
-      <button class="btn carts" id="${dress.id}" onclick="addCart(${dress.id})"
+      <button class="btn carts" id="${dress.id}" onclick="addToCart(${dress.id})"
       style="display: flex; position:absolute; right:1rem; top:1rem; background-color:crimson;"
       ><i class="fa-solid fa-cart-shopping"></i></button
     >
@@ -181,7 +204,7 @@ async function slide() {
   for (let i = 0; i < 3; i++) {
     data.innerHTML += `
       <div class='items' style="background-image:url(${dressList[i].image}); background-size: cover; width: 33.33vw; height:90vh; position:relative">
-      <button class="btn carts" id="${dressList[i].id}" onclick="addCart(${dressList[i].id})"
+      <button class="btn carts" id="${dressList[i].id}" onclick="addToCart(${dressList[i].id})"
       style="display: flex; position:absolute; right:1rem; top:1rem; background-color:crimson;"
             ><i class="fa-solid fa-cart-shopping"></i></button
           >
@@ -210,42 +233,55 @@ data.addEventListener("mouseout", (e) => {
 
 //----------------------CART CODE-----------------------------//
 
-let cart = [];
 
 function addToCart(x) {
-  let i = x - 1;
-  let cart = JSON.parse(localStorage.getItem("cart"))
-    ? JSON.parse(localStorage.getItem("cart"))
-    : [];
-  localStorage.setItem("cart", JSON.stringify(cart));
-
-  if (cart.includes(dressList[i])) {
+  if (cart.includes(dressList[x])) {
     console.log("Item already in cart");
-    dressList[i].quantity++;
+    cart[cart.indexOf(dressList[x])].quantity++;
     localStorage.setItem("cart", JSON.stringify(cart));
   } else {
+    
     console.log("First time adding item to cart");
-    dressList[i].quantity = 1;
-    cart.push(dressList[i]);
+    dressList[x].quantity = 1;
+    cart.push(dressList[x]);
     localStorage.setItem("cart", JSON.stringify(cart));
-    alert('Dress added to cart')
+    alert("Dress added to cart");
   }
 }
 
 // Filtering a Product
 
-let dress = document.querySelector(".search");
+let dress = document.querySelector(".items");
 let item = document.querySelector(".dresses");
 
 dress.addEventListener("keyup", () => {
+
   try {
-    if (!dress.value.length) throw "Enter a dress name";
+    if (!dress.value.length) throw "Enter a dress name"
     dressList = dressList.filter((items) => {
+      console.log(dressList[0]);
       return items.name.toLowerCase().includes(dress.value.toLowerCase());
-    });
+    })
     if (!dressList.length) throw "This dress is not yet available";
     display();
   } catch (data) {
     item.innerHTML = data;
+    console.log(data);
   }
 });
+
+
+
+//-------sort--------//
+
+dressList.sort(function (a, b) {
+  if (a.name < b.name) {
+    return -1;
+  }
+  if (a.name > b.name) {
+    return 1;
+  }
+  return 0;
+});
+
+console.log(dressList);
