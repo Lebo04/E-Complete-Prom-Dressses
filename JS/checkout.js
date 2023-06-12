@@ -2,7 +2,7 @@ let cart = JSON.parse(localStorage.getItem("cart"));
 let dress = JSON.parse(localStorage.getItem('dresses'));
 
 async function displayContent() {
-  let data = document.querySelector(".cartItems");
+  let data = document.querySelector(".cartProducts");
   cart.forEach((item) => {
     data.innerHTML += `<p><a href="#">${item.name}</a> <span class="price">R${item.price}</span></p>
   

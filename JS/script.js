@@ -1,4 +1,6 @@
-let cart = JSON.parse(localStorage.getItem("cart")) ? JSON.parse(localStorage.getItem("cart")) : [];
+let cart = JSON.parse(localStorage.getItem("cart"))
+  ? JSON.parse(localStorage.getItem("cart"))
+  : [];
 
 $(document).ready(function () {
   $(window).scroll(function () {
@@ -104,14 +106,14 @@ async function display() {
         <div class="card-body">
           <h5 class="card-title" style="overflow-y: hidden;">${dress.name}</h5>
             <div class="color-picker d-flex gap-2 py-2 ps-1">
-              <div class="color ps-2" style="background:${dress.color[0].toLowerCase()}"> </div>
-              <div class="color ps-2" style="background:${dress.color[1].toLowerCase()}"> </div>
-              <div class="color ps-2" style="background:${dress.color[2].toLowerCase()}"> </div>
+              <div class="color color-1 ps-2" style="background:${dress.color[0].toLowerCase()}"> </div>
+              <div class="color color-2 ps-2" style="background:${dress.color[1].toLowerCase()}"> </div>
+              <div class="color color-3 ps-2" style="background:${dress.color[2].toLowerCase()}"> </div>
             </div>
           <div class="size-picker d-flex gap-2 py-2 ps-1">
-          <div class="size ps-2">${dress.size[0]} </div>
-          <div class="size ps-2">${dress.size[1]} </div>
-          <div class="size ps-2">${dress.size[2]}</div>
+          <div class="size size-1 ps-2">${dress.size[0]} </div>
+          <div class="size size-2 ps-2">${dress.size[1]} </div>
+          <div class="size size-3 ps-2">${dress.size[2]}</div>
         </div>
           <p class="price">R${dress.price}</p>
           <button class="btn" id="${
@@ -231,8 +233,26 @@ data.addEventListener("mouseout", (e) => {
   data.id = "slidego";
 });
 
-//----------------------CART CODE-----------------------------//
+//======================== Filtering a Product ===============================//
 
+function filtered() {
+  let dress = document.querySelector(".items");
+  let item = document.querySelector(".dresses");
+  console.log("HI");
+  try {
+    if (!dress.value.length) throw "Enter a dress name";
+    dressList = dressList.filter((items) => {
+      return items.name.toLowerCase().includes(dress.value.toLowerCase());
+    });
+    if (!dressList.length) throw "This dress is not yet available";
+    display();
+  } catch (data) {
+    item.innerHTML = data;
+    console.log(data);
+  }
+}
+
+//----------------------CART CODE-----------------------------//
 
 function addToCart(x) {
   if (cart.includes(dressList[x])) {
@@ -240,7 +260,6 @@ function addToCart(x) {
     cart[cart.indexOf(dressList[x])].quantity++;
     localStorage.setItem("cart", JSON.stringify(cart));
   } else {
-    
     console.log("First time adding item to cart");
     dressList[x].quantity = 1;
     cart.push(dressList[x]);
@@ -249,39 +268,30 @@ function addToCart(x) {
   }
 }
 
-// Filtering a Product
-
-let dress = document.querySelector(".items");
-let item = document.querySelector(".dresses");
-
-dress.addEventListener("keyup", () => {
-
-  try {
-    if (!dress.value.length) throw "Enter a dress name"
-    dressList = dressList.filter((items) => {
-      console.log(dressList[0]);
-      return items.name.toLowerCase().includes(dress.value.toLowerCase());
-    })
-    if (!dressList.length) throw "This dress is not yet available";
-    display();
-  } catch (data) {
-    item.innerHTML = data;
-    console.log(data);
-  }
-});
-
-
-
 //-------sort--------//
 
-dressList.sort(function (a, b) {
-  if (a.name < b.name) {
-    return -1;
-  }
-  if (a.name > b.name) {
-    return 1;
-  }
-  return 0;
-});
+function sortByName() {
+  dressList.sort();
+  dressList.sort((a, b) => {
+    if (a.name.toLowerCase() < b.name.toLowerCase()) {
+      return -1;
+    } else if (a.name.toLowerCase() > b.name.toLowerCase()) {
+      return 1
+    } else {
+      return 0
+    }
+  });
+  display();
+}
 
-console.log(dressList);
+function sortByPrice() {
+  dressList.sort();
+  dressList.sort((a, b) => {
+    return a.price - b.price;
+  });
+  if (!dressList.asc) {
+    dressList.reverse();
+  }
+  dressList.asc = !dressList.asc;
+  display();
+}

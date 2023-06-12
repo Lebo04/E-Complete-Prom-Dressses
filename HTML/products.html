@@ -55,9 +55,9 @@
             </li>
           </ul>
           <form class="d-flex" role="search">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
             <input
               class="form-control me-2 items"
+              onkeyup="filtered()"
               type="search"
               placeholder="Search"
               aria-label="Search"
@@ -71,16 +71,12 @@
       <div style="margin-left: 1.5rem;">
         <h2 style="overflow-y: hidden; color: white; margin-bottom: 2rem; ">Filters</h2>
         <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+          <input class="form-check-input" onclick="sortByName()" type="checkbox" role="switch" id="flexSwitchCheckDefault">
           <label class="form-check-label" for="flexSwitchCheckDefault">Name (ASC)</label>
         </div>
         <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+          <input class="form-check-input" onclick="sortByPrice()" type="checkbox" role="switch" id="flexSwitchCheckDefault">
           <label class="form-check-label" for="flexSwitchCheckDefault">Price (Highest - Lowest)</label>
-        </div>
-        <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-          <label class="form-check-label" for="flexSwitchCheckDefault">Size</label>
         </div>
       </div>
       <div class="container">
