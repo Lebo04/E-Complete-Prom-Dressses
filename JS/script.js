@@ -112,7 +112,7 @@ async function display() {
           
             <div class="color-picker d-flex gap-2 py-2 ps-1">
             <label class="main">
-            <input class="checkbox1" type="checkbox" onclick="checkBoxes()">
+            <input class="checkbox1" type="checkbox" value="${dress.color[0].toLowerCase()}" onclick="checkBoxes()">
             <span class="w3docs" style="background:${dress.color[0].toLowerCase()}"></span>
           </label>
           <label class="main">
@@ -160,22 +160,25 @@ let itemId = sessionStorage.getItem("value") - 1;
 let checkbox1Value;
 let checkbox2Value;
 let checkbox3Value;
+let CheckValue1;
 
 function checkBoxes() {
   let checkbox1 = document.querySelector(".checkbox1");
   let checkbox2 = document.querySelector(".checkbox2");
   let checkbox3 = document.querySelector(".checkbox3");
+  CheckValue1 = document.querySelector(".checkbox1").value;
   checkbox1Value = checkbox1.checked;
   checkbox2Value = checkbox2.checked;
   checkbox3Value = checkbox3.checked;
 
+  console.log("Checkbox 1:", CheckValue1);
   console.log("Checkbox 1:", checkbox1Value);
   console.log("Checkbox 2:", checkbox2Value);
   console.log("Checkbox 3:", checkbox3Value);
 }
 
 async function displaySingle() {
-  console.log("Checkbox 1:", checkbox1Value);
+  console.log("Checkbox 1:", CheckValue1);
   let data = document.querySelector(".dresser");
   let itemId = sessionStorage.getItem("value") - 1;
   data.innerHTML += `
@@ -202,9 +205,9 @@ async function displaySingle() {
        <div class="size ps-2">${dressList[itemId].size[2]}</div>
      </div>
      <p style="color:white;">R${dressList[itemId].price}</p>
-           <button class="btn btn-primary cart" id="${
+           <button class="btn cart" id="${
              dressList[itemId].id
-           }" onclick="addCart(${dressList[itemId].id})"
+           }" style="background-color:crimson" onclick="addToCart(${dressList[itemId].id})"
            ><i class="fa-solid fa-cart-shopping"></i></button
            >
         </div>
@@ -286,11 +289,9 @@ function filtered() {
 
 function addToCart(x) {
   if (cart.includes(dressList[x])) {
-    console.log("Item already in cart");
     cart[cart.indexOf(dressList[x])].quantity++;
     localStorage.setItem("cart", JSON.stringify(cart));
   } else {
-    console.log("First time adding item to cart");
     dressList[x].quantity = 1;
     cart.push(dressList[x]);
     localStorage.setItem("cart", JSON.stringify(cart));
