@@ -12,6 +12,8 @@ $(document).ready(function () {
   });
 });
 
+//========================== MOCK PRODUCTS =====================//
+
 let dresses = [
   {
     id: 1,
@@ -90,6 +92,8 @@ let dresses = [
 localStorage.setItem("dresses", JSON.stringify(dresses));
 let dressList = JSON.parse(localStorage.getItem("dresses"));
 
+//================ ALL PRODUCTS ==================//
+
 async function display() {
   let data = document.querySelector(".dresses");
   data.innerHTML = "";
@@ -105,10 +109,20 @@ async function display() {
         />
         <div class="card-body">
           <h5 class="card-title" style="overflow-y: hidden;">${dress.name}</h5>
+          
             <div class="color-picker d-flex gap-2 py-2 ps-1">
-              <div class="color color-1 ps-2" style="background:${dress.color[0].toLowerCase()}"> </div>
-              <div class="color color-2 ps-2" style="background:${dress.color[1].toLowerCase()}"> </div>
-              <div class="color color-3 ps-2" style="background:${dress.color[2].toLowerCase()}"> </div>
+            <label class="main">
+            <input class="checkbox1" type="checkbox" onclick="checkBoxes()">
+            <span class="w3docs" style="background:${dress.color[0].toLowerCase()}"></span>
+          </label>
+          <label class="main">
+            <input class="checkbox2" type="checkbox" onclick="checkBoxes()">
+            <span class="w3docs" style="background:${dress.color[1].toLowerCase()}"></span>
+          </label>
+          <label class="main">
+            <input class="checkbox3" type="checkbox" onclick="checkBoxes()">
+            <span class="w3docs" style="background:${dress.color[2].toLowerCase()}"></span>
+          </label>
             </div>
           <div class="size-picker d-flex gap-2 py-2 ps-1">
           <div class="size size-1 ps-2">${dress.size[0]} </div>
@@ -135,13 +149,33 @@ async function display() {
 
 display();
 
+//================= SINGLE PRODUCT ======================//
+
 function setValue(id) {
   sessionStorage.setItem("value", id);
   displaySingle();
 }
 let itemId = sessionStorage.getItem("value") - 1;
 
+let checkbox1Value;
+let checkbox2Value;
+let checkbox3Value;
+
+function checkBoxes() {
+  let checkbox1 = document.querySelector(".checkbox1");
+  let checkbox2 = document.querySelector(".checkbox2");
+  let checkbox3 = document.querySelector(".checkbox3");
+  checkbox1Value = checkbox1.checked;
+  checkbox2Value = checkbox2.checked;
+  checkbox3Value = checkbox3.checked;
+
+  console.log("Checkbox 1:", checkbox1Value);
+  console.log("Checkbox 2:", checkbox2Value);
+  console.log("Checkbox 3:", checkbox3Value);
+}
+
 async function displaySingle() {
+  console.log("Checkbox 1:", checkbox1Value);
   let data = document.querySelector(".dresser");
   let itemId = sessionStorage.getItem("value") - 1;
   data.innerHTML += `
@@ -161,12 +195,6 @@ async function displaySingle() {
            <div class="color ps-2" style="background:${dressList[
              itemId
            ].color[0].toLowerCase()}"> </div>
-           <div class="color ps-2" style="background:${dressList[
-             itemId
-           ].color[1].toLowerCase()}"> </div>
-           <div class="color ps-2" style="background:${dressList[
-             itemId
-           ].color[2].toLowerCase()}"> </div>
          </div>
        <div class="size-picker d-flex gap-2 py-2 ps-1">
        <div class="size ps-2">${dressList[itemId].size[0]} </div>
@@ -185,11 +213,13 @@ async function displaySingle() {
 }
 displaySingle();
 
+//================== HOME PAGE PRODUCTS ====================//
+
 async function slide() {
   let data = document.querySelector(".slide");
   dressList.forEach((dress) => {
     data.innerHTML += `
-      <div class='items' style="background-image:url(${dress.image}); background-size: cover; width: 33.33vw; height:90vh; position:relative;">
+      <div class='items' style="background-image:url(${dress.image}); background-size: cover; background-position: center; width: 33.33vw; height:60vh; position:relative;">
       <button class="btn carts" id="${dress.id}" onclick="addToCart(${dress.id})"
       style="display: flex; position:absolute; right:1rem; top:1rem; background-color:crimson;"
       ><i class="fa-solid fa-cart-shopping"></i></button
@@ -205,7 +235,7 @@ async function slide() {
   });
   for (let i = 0; i < 3; i++) {
     data.innerHTML += `
-      <div class='items' style="background-image:url(${dressList[i].image}); background-size: cover; width: 33.33vw; height:90vh; position:relative">
+      <div class='items' style="background-image:url(${dressList[i].image}); background-size: cover; background-position: center; width: 33.33vw; height:60vh; position:relative">
       <button class="btn carts" id="${dressList[i].id}" onclick="addToCart(${dressList[i].id})"
       style="display: flex; position:absolute; right:1rem; top:1rem; background-color:crimson;"
             ><i class="fa-solid fa-cart-shopping"></i></button
@@ -252,7 +282,7 @@ function filtered() {
   }
 }
 
-//----------------------CART CODE-----------------------------//
+//=========================== CART CODE ================================//
 
 function addToCart(x) {
   if (cart.includes(dressList[x])) {
@@ -268,17 +298,16 @@ function addToCart(x) {
   }
 }
 
-//-------sort--------//
+//========================= SORT ===============================//
 
 function sortByName() {
-  dressList.sort();
   dressList.sort((a, b) => {
     if (a.name.toLowerCase() < b.name.toLowerCase()) {
       return -1;
     } else if (a.name.toLowerCase() > b.name.toLowerCase()) {
-      return 1
+      return 1;
     } else {
-      return 0
+      return 0;
     }
   });
   display();

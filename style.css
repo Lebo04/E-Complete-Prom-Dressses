@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
@@ -33,7 +34,7 @@ body {
   position: fixed;
   top: 0px;
   width: 100%;
-  font-family: "Ubuntu", sans-serif;
+  /* font-family: "Ubuntu", sans-serif; */
   transition: all 0.3s ease;
   z-index: 1000;
 }
@@ -97,7 +98,12 @@ body {
 }
 
 .home {
-  background-image: url("https://i.postimg.cc/Gm0dkLfm/hire-a-dress-banner.jpg");
+  background-image: linear-gradient(
+      rgba(99, 96, 96, 0.688),
+      rgba(59, 58, 58, 0.688)
+    ),
+    url("https://i.postimg.cc/Gm0dkLfm/hire-a-dress-banner.jpg");
+  background-position: bottom;
   background-repeat: no-repeat;
   background-size: cover;
   color: #ffff;
@@ -105,12 +111,44 @@ body {
   text-align: center;
   justify-content: center;
   margin-top: 4rem;
-  font-family: "Ubuntu", sans-serif;
-  height: 60vh;
+  font-size: 2rem;
+  height: 70vh;
+}
+
+.home p {
+  margin-top: 4rem;
+  white-space: nowrap;
+  overflow: hidden;
+  font-family: "Poppins", sans-serif;
+  animation: reveal 3000ms ease-in-out forwards 200ms,
+    glow 2500ms linear infinite 2000ms;
+}
+
+@keyframes reveal {
+  80% {
+    letter-spacing: .5rem;
+  }
+  100% {
+    background-size: 300% 300%;
+  }
+}
+@keyframes glow {
+  40% {
+    text-shadow: 0 0 .5rem #fff;
+  }
 }
 
 .home .stock {
   font-size: 1.5rem;
+}
+
+.home .stock {
+  font-size: 1.5rem;
+}
+
+.home h1 {
+  align-items: center;
+  justify-content: center;
 }
 
 h1 {
@@ -126,6 +164,48 @@ label {
   color: #ffff;
 }
 
+.main {
+  position: relative;
+  padding-left: 2rem;
+  cursor: pointer;
+}
+
+.color-picker input[type="checkbox"] {
+  visibility: hidden;
+}
+
+.w3docs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 50%;
+  box-shadow: 0 0 .5rem 0 gray;
+}
+
+.w3docs:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.main input:checked ~ .w3docs:after {
+  display: block;
+}
+
+.main .w3docs:after {
+  left: .5rem;
+  bottom: .4rem;
+  width: .4rem;
+  height: .8rem;
+  border: solid white;
+  border-width: 0 .2rem .2rem 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
 .cart {
   background: transparent;
   margin-top: 5rem;
@@ -136,25 +216,25 @@ label {
 }
 
 .checkout .row {
-  display: -ms-flexbox; /* IE10 */
+  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap; /* IE10 */
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   margin: 0 -16px;
 }
 
 .checkout .col-25 {
-  -ms-flex: 25%; /* IE10 */
+  -ms-flex: 25%;
   flex: 25%;
 }
 
 .checkout .col-50 {
-  -ms-flex: 50%; /* IE10 */
+  -ms-flex: 50%;
   flex: 50%;
 }
 
 .checkout .col-75 {
-  -ms-flex: 75%; /* IE10 */
+  -ms-flex: 75%;
   flex: 75%;
 }
 
