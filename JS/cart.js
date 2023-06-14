@@ -1,4 +1,5 @@
 let cart = JSON.parse(localStorage.getItem('cart'));
+let size = JSON.parse(localStorage.getItem('size'));
 
 async function displayContent() {
   let data = document.querySelector(".container");
@@ -16,6 +17,8 @@ async function displayContent() {
                 <div class="col-md-3 col-lg-3 col-xl-3">
                   <p class="lead name fw-normal mb-2" style="font-size:1.4rem">${item.name}</p>
                   <p style="font-size:.8rem"><span class="text">Description: ${item.description}</span></p>
+                  <p> Color: ${item.color} </p>
+                  <p> Size: ${item.size} </p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
                   <button class="btn btn-link px-2"
@@ -68,11 +71,3 @@ function calTotal() {
   document.querySelector('.total').innerHTML += `R${total}`
 }
 calTotal()
-
-// function prices(price,) {
-//   let total = price * quantity;
-//   console.log(total);
-//   document.querySelector('#quantity').innerHTML += `R${total}`
-// }
-
-// prices();

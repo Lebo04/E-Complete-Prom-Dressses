@@ -112,23 +112,34 @@ async function display() {
           
             <div class="color-picker d-flex gap-2 py-2 ps-1">
             <label class="main">
-            <input class="checkbox1" type="checkbox" value="${dress.color[0].toLowerCase()}" onclick="checkBoxes()">
-            <span class="w3docs" style="background:${dress.color[0].toLowerCase()}"></span>
+            <input class="checkbox1" type="checkbox" name="color" value="${
+              dress.color[0]
+            }">
+            <span class="w3docs" style="background:${dress.color[0]}"></span>
           </label>
           <label class="main">
-            <input class="checkbox2" type="checkbox" onclick="checkBoxes()">
-            <span class="w3docs" style="background:${dress.color[1].toLowerCase()}"></span>
+            <input class="checkbox2" type="checkbox" name="color" value="${
+              dress.color[1]
+            }">
+            <span class="w3docs" style="background:${dress.color[1]}"></span>
           </label>
           <label class="main">
-            <input class="checkbox3" type="checkbox" onclick="checkBoxes()">
-            <span class="w3docs" style="background:${dress.color[2].toLowerCase()}"></span>
+            <input class="checkbox3" type="checkbox" name="color" value="${
+              dress.color[2]
+            }">
+            <span class="w3docs" style="background:${dress.color[2]}"></span>
           </label>
             </div>
-          <div class="size-picker d-flex gap-2 py-2 ps-1">
-          <div class="size size-1 ps-2">${dress.size[0]} </div>
-          <div class="size size-2 ps-2">${dress.size[1]} </div>
-          <div class="size size-3 ps-2">${dress.size[2]}</div>
+          <div class="size-picker d-flex gap-2 py-2 ps-1" style="overflow-y: hidden;">
+          
+          <select id="sizeSelect" class="form-select" aria-label="Default select example" style="width:6vw">
+            <option selected>Size</option>
+            <option value="${dress.size[0]}">${dress.size[0]}</option>
+            <option value="${dress.size[1]}">${dress.size[1]}</option>
+            <option value="${dress.size[2]}">${dress.size[2]}</option>
+          </select>
         </div>
+        <div id="selected-colors"></div>
           <p class="price">R${dress.price}</p>
           <button class="btn" id="${
             dress.id
@@ -148,6 +159,55 @@ async function display() {
 }
 
 display();
+
+function saveSize(x) {
+  var sizeSelect = document.querySelector("#sizeSelect");
+  var selectedSize = sizeSelect.value;
+  localStorage.setItem("selectedSize", selectedSize);
+  alert("Size saved successfully!");
+}
+
+function loadSize() {
+  var sizeSelect = document.querySelector("#sizeSelect");
+  var selectedSize = localStorage.getItem("selectedSize");
+  if (selectedSize) {
+    sizeSelect.value = selectedSize;
+  }
+}
+
+window.onload = function () {
+  loadSize();
+};
+
+const colorCheckboxes = document.querySelectorAll('input[name="color"]');
+const selectedColorsContainer = document.getElementById("selected-colors");
+
+colorCheckboxes.forEach(function (checkbox) {
+  checkbox.addEventListener("change", function () {
+    const color = this.value;
+    if (this.checked) {
+      addColor(color);
+    } else {
+      removeColor(color);
+    }
+  });
+});
+
+function addColor(color) {
+  const colorBox = document.createElement("span");
+  colorBox.classList.add("color-box");
+  colorBox.style.backgroundColor = color;
+  selectedColorsContainer.appendChild(colorBox);
+}
+
+function removeColor(color) {
+  const colorBoxes = selectedColorsContainer.querySelectorAll(".color-box");
+  colorBoxes.forEach(function (colorBox) {
+    if (colorBox.style.backgroundColor === color) {
+      colorBox.parentNode.removeChild(colorBox);
+    }
+  });
+}
 
 //================= SINGLE PRODUCT ======================//
 
@@ -190,24 +250,33 @@ async function displaySingle() {
         />
 
         <div style="margin-left: 2rem; margin-top:2rem">
-        <h5 style="overflow-y:hidden; color:white;">${
-          dressList[itemId].name
-        }</h5>
+        <h5 style="overflow-y:hidden; color:white;">${dressList[itemId].name}</h5>
            <p style="color:white;">${dressList[itemId].description}</p>
            <div class="color-picker d-flex gap-2 py-2 ps-1">
-           <div class="color ps-2" style="background:${dressList[
-             itemId
-           ].color[0].toLowerCase()}"> </div>
-         </div>
-       <div class="size-picker d-flex gap-2 py-2 ps-1">
-       <div class="size ps-2">${dressList[itemId].size[0]} </div>
-       <div class="size ps-2">${dressList[itemId].size[1]} </div>
-       <div class="size ps-2">${dressList[itemId].size[2]}</div>
+            <label class="main">
+            <input class="checkbox1" type="checkbox" name="color" value="${dressList[itemId].color[0]}">
+            <span class="w3docs" style="background:${dressList[itemId].color[0]}"></span>
+          </label>
+          <label class="main">
+            <input class="checkbox2" type="checkbox" name="color" value="${dressList[itemId].color[1]}">
+            <span class="w3docs" style="background:${dressList[itemId].color[1]}"></span>
+          </label>
+          <label class="main">
+            <input class="checkbox3" type="checkbox" name="color" value="${dressList[itemId].color[2]}">
+            <span class="w3docs" style="background:${dressList[itemId].color[2]}"></span>
+          </label>
+            </div>
+          <div class="size-picker d-flex gap-2 py-2 ps-1" style="overflow-y: hidden;">
+          
+          <select id="sizeSelect" class="form-select" aria-label="Default select example" style="width:6vw">
+            <option selected>Size</option>
+            <option value="${dressList[itemId].size[0]}">${dressList[itemId].size[0]}</option>
+            <option value="${dressList[itemId].size[1]}">${dressList[itemId].size[1]}</option>
+            <option value="${dressList[itemId].size[2]}">${dressList[itemId].size[2]}</option>
+          </select>
      </div>
      <p style="color:white;">R${dressList[itemId].price}</p>
-           <button class="btn cart" id="${
-             dressList[itemId].id
-           }" style="background-color:crimson" onclick="addToCart(${dressList[itemId].id})"
+           <button class="btn cart" id="${dressList[itemId].id}" style="background-color:crimson" onclick="addToCart(${dressList[itemId].id})"
            ><i class="fa-solid fa-cart-shopping"></i></button
            >
         </div>
@@ -219,9 +288,10 @@ displaySingle();
 //================== HOME PAGE PRODUCTS ====================//
 
 async function slide() {
-  let data = document.querySelector(".slide");
+  let data = document.querySelector(".slider");
   dressList.forEach((dress) => {
     data.innerHTML += `
+
       <div class='items' style="background-image:url(${dress.image}); background-size: cover; background-position: center; width: 33.33vw; height:60vh; position:relative;">
       <button class="btn carts" id="${dress.id}" onclick="addToCart(${dress.id})"
       style="display: flex; position:absolute; right:1rem; top:1rem; background-color:crimson;"
@@ -230,7 +300,7 @@ async function slide() {
     <h5 class="card-title" style="position:absolute; bottom:2.5rem; left:1rem; color: white; overflow-y:hidden">${dress.name}</h5>
     <p class="price" style="position:absolute; bottom:0rem; left:1rem; color: white"
     >R${dress.price}</p>
-    <button class="btn" id="${dress.id}" style="background-color:crimson; display: flex; position:absolute; right:1rem; bottom:1rem;" onclick="setValue(${dress.id});"
+    <button class="btn view" id="${dress.id}" style="background-color:crimson;" onclick="setValue(${dress.id});"
             ><a class="nav-link" href="./HTML/product.html">View Dress</a></button
           >
       </div>
@@ -288,6 +358,16 @@ function filtered() {
 //=========================== CART CODE ================================//
 
 function addToCart(x) {
+  // var colorSelect = document.querySelector("#colorSelect");
+  // var selectedColor = colorSelect.value;
+
+  // localStorage.setItem("color", JSON.stringify(selectedColor));
+
+  // var sizeSelect = document.querySelector("#sizeSelect");
+  // var selectedSize = sizeSelect.value;
+
+  // localStorage.setItem("size", JSON.stringify(selectedSize));
+
   if (cart.includes(dressList[x])) {
     cart[cart.indexOf(dressList[x])].quantity++;
     localStorage.setItem("cart", JSON.stringify(cart));

@@ -73,11 +73,18 @@ body {
   color: #fff;
 }
 
-.slide {
+.slider {
   display: flex;
   min-width: 366.66vw;
   z-index: +3;
   animation: slide 30s linear infinite;
+}
+
+.slider .view {
+  display: flex;
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
 }
 
 #slidego {
@@ -126,7 +133,7 @@ body {
 
 @keyframes reveal {
   80% {
-    letter-spacing: .5rem;
+    letter-spacing: 0.5rem;
   }
   100% {
     background-size: 300% 300%;
@@ -134,7 +141,7 @@ body {
 }
 @keyframes glow {
   40% {
-    text-shadow: 0 0 .5rem #fff;
+    text-shadow: 0 0 0.5rem #fff;
   }
 }
 
@@ -181,7 +188,7 @@ label {
   height: 1.5rem;
   width: 1.5rem;
   border-radius: 50%;
-  box-shadow: 0 0 .5rem 0 gray;
+  box-shadow: 0 0 0.5rem 0 gray;
 }
 
 .w3docs:after {
@@ -195,12 +202,12 @@ label {
 }
 
 .main .w3docs:after {
-  left: .5rem;
-  bottom: .4rem;
-  width: .4rem;
-  height: .8rem;
+  left: 0.5rem;
+  bottom: 0.4rem;
+  width: 0.4rem;
+  height: 0.8rem;
   border: solid white;
-  border-width: 0 .2rem .2rem 0;
+  border-width: 0 0.2rem 0.2rem 0;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
@@ -297,16 +304,6 @@ label {
   color: grey;
 }
 
-/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (and change the direction - make the "cart" column go on top) */
-@media (max-width: 800px) {
-  .row {
-    flex-direction: column-reverse;
-  }
-  .col-25 {
-    margin-bottom: 20px;
-  }
-}
-
 footer {
   background-color: crimson;
 }
@@ -351,6 +348,20 @@ footer p {
   padding-bottom: 2rem;
 }
 
+@media screen and (max-width: 426px) {
+  .slider h5,
+  .slider p {
+    font-size: 0.5rem;
+  }
+  .slider .view {
+    font-size: 0.8rem;
+    display: flex;
+    position: absolute;
+    right: 1rem;
+    bottom: 4rem;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .home {
     font-size: 2.5rem;
@@ -384,6 +395,16 @@ footer p {
   .size {
     height: 1.5rem;
     width: 1.5rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .slider h5,
+  .slider p {
+    font-size: 1rem;
+  }
+  .slider .view {
+    font-size: 0.8rem;
   }
 }
 
