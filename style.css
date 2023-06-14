@@ -73,14 +73,14 @@ body {
   color: #fff;
 }
 
-.slider {
+.slide {
   display: flex;
   min-width: 366.66vw;
   z-index: +3;
   animation: slide 30s linear infinite;
 }
 
-.slider .view {
+.slide .view {
   display: flex;
   position: absolute;
   right: 1rem;

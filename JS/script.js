@@ -288,7 +288,7 @@ displaySingle();
 //================== HOME PAGE PRODUCTS ====================//
 
 async function slide() {
-  let data = document.querySelector(".slider");
+  let data = document.querySelector(".slide");
   dressList.forEach((dress) => {
     data.innerHTML += `
 
